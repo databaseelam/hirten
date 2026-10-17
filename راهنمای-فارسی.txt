@@ -1,0 +1,14 @@
+Hirten — بسته وب‌اپ قابل نصب برای Android و iPhone
+
+نام برنامه: Hirten
+لوگوی اصلی:
+فایل elam-logo-original.png همان فایل ارسالی شماست و بدون تغییر نگهداری شده است.
+آیکون‌های نصب از همان لوگو با حفظ نسبت تصویر ساخته شده‌اند.
+
+لینک سامانه‌ای که برنامه باز می‌کند:
+https://script.google.com/macros/s/AKfycbxLEt9P-ovC8NWwzLYg22h5MMSC75ZvDIol58IgqNFkgi1oeTjVz1hKcAb18wk4U3ec/exec
+
+این ZIP به‌تنهایی APK اندروید یا فایل نصب iOS نیست. برای اینکه مخاطبان فقط یک لینک دریافت کنند، باید محتویات پوشه روی میزبانی HTTPS (مثلاً GitHub Pages) منتشر شود.
+
+نصب Android: لینک منتشرشده را در Chrome باز کنید و از منو Install app یا Add to Home screen را انتخاب کنید.
+نصب iPhone: لینک منتشرشده را در Safari باز کنید، Share و سپس Add to Home Screen را انتخاب کنید.

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#078b24">
+  <meta name="description" content="ورود آسان به سامانه مینیستری عیلام زنده">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hirten">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Hirten</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100dvh;
+      display: grid; place-items: center; padding: 24px;
+      background: linear-gradient(155deg, #efffed, #ffffff 55%, #fff4e5);
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+      color: #17331c;
+    }
+    main {
+      width: min(100%, 420px); text-align: center; background: #fff;
+      border-radius: 26px; padding: 30px 24px;
+      box-shadow: 0 12px 40px rgba(14, 75, 25, .12);
+    }
+    .logo { display: block; width: min(72vw, 280px); height: auto; margin: 0 auto; }
+    h1 { font-size: 1.65rem; margin: 18px 0 8px; }
+    p { line-height: 1.9; margin: 8px 0 22px; color: #4c5e4e; }
+    a, button {
+      display: block; width: 100%; border: 0; border-radius: 14px;
+      padding: 15px 18px; font: inherit; font-weight: 700; cursor: pointer;
+      text-decoration: none;
+    }
+    .open { color: white; background: #078b24; }
+    .install { margin-top: 10px; color: #087525; background: #e8f8e9; }
+    .hint { font-size: .88rem; margin: 16px 0 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="elam-logo-original.png" alt="لوگوی اصلی Elam Alive Ministries">
+    <h1>Hirten</h1>
+    <p>برای ورود به سامانه مینیستری عیلام زنده، دکمه زیر را لمس کنید.</p>
+    <a class="open" href="https://script.google.com/macros/s/AKfycbxLEt9P-ovC8NWwzLYg22h5MMSC75ZvDIol58IgqNFkgi1oeTjVz1hKcAb18wk4U3ec/exec">ورود به سامانه</a>
+    <button class="install" id="installBtn" hidden>نصب Hirten</button>
+    <p class="hint" id="hint">برای دسترسی آسان، این صفحه را به صفحه اصلی گوشی اضافه کنید.</p>
+  </main>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol === "https:") {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
+    const hint = document.getElementById("hint");
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredPrompt = event;
+      installBtn.hidden = false;
+    });
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+      hint.textContent = "برای نصب در آیفون: در Safari دکمه اشتراک‌گذاری را بزنید، سپس Add to Home Screen را انتخاب کنید.";
+    }
+  </script>
+</body>
+</html>
